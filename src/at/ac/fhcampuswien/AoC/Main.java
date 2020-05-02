@@ -1,10 +1,14 @@
 package at.ac.fhcampuswien.AoC;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         System.out.println("What is your name?:");
         Scanner s1 = new Scanner(System.in);
@@ -19,5 +23,9 @@ public class Main {
         String username = s3.nextLine();
 
         System.out.println("your name is " + name + ", you are " + age + " years old, and your username is " + username);
+
+        try (PrintStream out = new PrintStream(new FileOutputStream("info.txt"))) {
+            out.println("your name is " + name + ", you are " + age + " years old, and your username is " + username);
+        }
     }
 }
